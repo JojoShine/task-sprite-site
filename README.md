@@ -23,6 +23,6 @@ node scripts/publish-release.mjs /private/path/release-input.json /private/path/
 node scripts/publish-release.mjs --rollback=0.2.0 /private/path/packages /private/path/oss.env
 ```
 
-仅用于公开下载的安装包和版本JSON具有公开读取权限，不改变现有业务对象权限。回退先验证历史版本安装包，再切换最新版本指针。不要把访问密钥写入网页或版本JSON。
+存储允许公开下载时，仅安装包和版本JSON使用公开读取权限，不改变现有业务对象权限。当前桶禁止公开读取，因此使用 `OSS_PUBLIC_READ=false` 私有归档，并以 `DOWNLOAD_ORIGIN=https://tbtparent.me/` 生成稳定官网地址；把同一批已验证安装包及清单部署到官网版本目录，再原子切换官网目录。回退先验证历史版本安装包，再切换最新版本指针。不要把访问密钥写入网页或版本JSON。
 
 服务器将`/task-sprite/`映射到本项目静态构建，将`/task-sprite/releases/latest.json`代理到OSS清单；`/task-sprite/api/`由独立API路由处理。更新时保留旧静态版本和Nginx配置，以便回退。
