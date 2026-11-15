@@ -152,3 +152,14 @@ async function loadRelease() {
   }
 }
 void loadRelease();
+
+const adminContact = document.querySelector('#admin-contact');
+const adminFeedback = document.querySelector('[data-admin-feedback]');
+for (const button of document.querySelectorAll('[data-admin-open]')) {
+  button.addEventListener('click', () => { adminFeedback.textContent = ''; adminContact.showModal(); });
+}
+document.querySelector('[data-admin-close]')?.addEventListener('click', () => adminContact.close());
+document.querySelector('[data-admin-copy]')?.addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText('tbtparent'); adminFeedback.textContent = '微信号已复制，打开微信添加管理员即可。'; }
+  catch { adminFeedback.textContent = '请手动复制微信号：tbtparent'; }
+});
