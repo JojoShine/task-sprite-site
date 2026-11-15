@@ -1,0 +1,12 @@
+dist/
+.DS_Store
+.openai/*.local.json
+
+node_modules/
+.env
+.env.*
+!.env.example
+qa/
+.openai/
+*.sql
+*.sqlite*

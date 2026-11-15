@@ -1,0 +1,17 @@
+{
+  "name": "task-sprite-site",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server 4173 --bind 127.0.0.1",
+    "check": "node --check app.js && node --check release-manifest.js && node --check build.mjs",
+    "build": "node build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "release:publish": "node scripts/publish-release.mjs"
+  },
+  "devDependencies": {
+    "ali-oss": "6.23.0",
+    "dotenv": "17.2.3"
+  }
+}

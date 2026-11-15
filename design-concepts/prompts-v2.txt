@@ -1,0 +1,40 @@
+Task Sprite — three-page design prompts
+Generated using the built-in image generation tool. Preview concepts only; website implementation unchanged.
+
+Page 1
+Use case: ui-mockup. Generate ONE landscape desktop website homepage design comp, 1536x1024. Task Sprite Chinese pixel desktop task companion. This is page 1 of a coherent THREE PAGE website, one standalone page only.
+REFERENCE 1 is previous design: KEEP its beloved bottom illustration concept (orange cat, caramel shiba, blue robot, lavender ghost on pixel baseline, cream hovering task card and robot pedestal). CORRECT its excessively huge text/buttons. Other references are character identity atlases ONLY; use single poses, no atlas grids or dark backgrounds.
+CRITICAL SCALE: treat image as a real desktop browser viewport at 1440 CSS pixels wide, content width 1120, side margins 150ish. Header height 72. Logo text 22px, navigation 15px, main headline 48 CSS px (about 52 image pixels), body 17px, button label 15px, button height 44px, width 150px. Never enlarge the typography to fill space. Lots of calm breathing room. Headline one line, NOT two huge lines. All UI labels stay normal-sized and readable. No giant display title.
+Art direction: warm off-white #f7f7f0, charcoal #30352f, muted olive #606e4f, tiny muted brick-red overdue count, crisp stepped pixel outlines and subtle offset pixel shadow on illustration only. Clean Chinese sans body type, small pixel brand accents. Flat page, no gradients/glow/glass/3D/photos. Very faint dotted grid ONLY behind the character stage. No browser/device frame.
+Header top across content: tiny ghost mark + Task Sprite left, links 首页 (active subtle olive underline), 免费与年卡, 下载 right. Hairline at bottom.
+At upper center y180 small eyebrow 桌面任务小伙伴. Main single-line headline at y230 exactly 要做的事，就在眼前。 at only ~48px. Subcopy y305 exactly 一个住在桌面的任务小伙伴，陪你一件件完成。 at 17px. Primary compact olive button 下载桌面版 and secondary text 了解年卡 at y365. Leave air between.
+Lower illustration from y485 to850, within 980 wide: four recognizable pixel companions each about 110-150px tall standing along baseline near y805; blue robot slightly taller at center-right with floating compact cream task card above: 正在做 / 完成方案初稿 / 完成. Card ~280x80, text 16px. Pedestal about 210x40 reads 待办 3 | 逾期 1, count in muted red. Cat and dog to left, ghost to right, ample space between, preserve lovable character silhouettes. Tiny yellow star near card only. Real crisp chunky pixel art. Under stage caption 四位免费伙伴，随时切换。 at 15px.
+Subtle footer at y965, tiny brand and 一点陪伴，一点进展。 Balanced polished indie productivity site. No extra feature panels, no prices, no invented claims, no annotations/watermarks. This is a real usable web layout, not a promotional poster.
+
+Page 2
+Use case: ui-mockup. Create ONE standalone landscape desktop website design image 1536x1024 for Task Sprite, page 2 of 3: 免费与年卡. ONE page, no collage. Reference supplied is the approved visual direction homepage; match its warm off-white canvas, charcoal Chinese sans, muted olive accents, crisp small stepped pixel corners, tiny ghost brand, one-pixel rules. Keep header/footer consistent but make type and controls SMALLER and more realistic if needed. Desktop content width 1120 CSS px at 1440 viewport, about 140px side margins. Main heading 36px, body 16px, navigation 15px, card headings 24px, button height 44px, NOT giant lettering. No browser or device mockup, no annotations.
+Header 72px tall, left tiny ghost + Task Sprite at 22px, right 首页 / 免费与年卡 (active olive underline) / 下载. Below, compact left-aligned page title 本地就很好，想同步再用年卡。 and subtitle 一台电脑，免费开始；需要多设备协作时，再多走一步。 Avoid price or invented metrics.
+Center body TWO spacious comparison columns on same baseline between y235 and760. Delicate stepped outline, generous padding, simple flat surfaces, no nested card clutter.
+Left cream-white column: small tag 免费本地版, heading 你的桌面小伙伴, short intro 日常任务与提醒，免费使用。 Four readable rows with small olive pixel checkmarks, exactly:
+本地任务、优先级与截止时间
+当前任务、逾期与稍后提醒
+四位精灵，深浅色外观
+本机保存，无需账号，CSV 导出
+Near bottom compact outline action 查看下载状态 and small note 公开下载准备中.
+Right pale olive-tinted column with tiny tag 年卡 · 筹备中; heading 从手机，接着做到桌面; short intro 包含免费版能力，再多这四件事。 Four compact distinct rows with simple pixel line icons and title + one short explanatory line:
+一段话拆解任务 / 小程序输入想法，AI 整理待办
+更多角色与皮肤主题 / 给桌面伙伴换个新装扮
+个人多设备云同步 / 小程序维护，电脑接着完成
+任务统计与 AI 阶段汇报 / 把完成的事，整理成阶段进展
+Compact disabled olive-gray button 年卡暂未开放; fine text 价格与支付方式将在开放时公布.
+Below columns a calm horizontal ruled note at y805: 按年付费 · 默认 3 台电脑 · 小程序不占名额; second line 续费与付费扩容沿用原卡。 At far right a small ticket-like pixel mark 3 台电脑.
+Lower left four SMALL charming pixel companions (orange cat, shiba, blue robot, lavender ghost) each only 40-55px tall standing together on a subtle baseline; no giant illustration competing with comparison. Lower right note 年卡、小程序、云同步与 AI 能力均在筹备中。 All annual capabilities consistently labelled planned. Footer brand + 一点陪伴，一点进展。 warm white/olive only, no gradients, glow, 3D, testimonials, prices, currency, QR codes or watermarks. Carefully readable Chinese and aligned generous whitespace.
+
+Page 3
+Use case: ui-mockup. Create ONE standalone landscape desktop WEBSITE DOWNLOAD PAGE design image for Task Sprite at 1536x1024, third of three coordinated web pages. Two reference images show the homepage and plan page: match same ghost brand, warm ivory #f7f7f0, charcoal #30352f, restrained olive #606e4f, subtle cream pixel stationery, crisp stepped outline corners, simple small pixel art. Use real web sizing, heading 40px, body16-18px, nav15px, buttons44px tall. No giant poster letters. Content width1120 within1440 viewport and ample margins. Header same 72px across: tiny ghost+Task Sprite left, 首页 / 免费与年卡 / 下载 at right, 下载 active small outline button, fine line below.
+Main composition varied from homepage and comparison: editorial two-column main area, LEFT 42% small left-aligned heading and product stage, RIGHT 50% clear OS download choices. Plenty of warm blank space.
+Left start y200: small olive eyebrow 下载桌面版. Heading on two lines 给桌面， / 留一个小伙伴的位置。 at realistic40px. Supporting body 先把要做的事，放在看得见的地方。 at17px. Below at y440-750 small airy product demonstration: blue square-headed robot with cyan eyes stands ~140px tall on cream stepped pedestal 待办 3 | 逾期 1; floating compact task card 正在做 / 完成方案初稿 / 完成. Tiny orange cat, shiba and lavender ghost sit to sides ~65px tall, same identities as refs; subtle dotted grid behind, baseline and tiny yellow star. Preserve all four beloved companions without huge artwork, accurate crisp pixel silhouettes.
+Right y220-620 TWO stacked wide OS download rows with subtle stepped border, no nested cards. First macOS, small simple monochrome Apple icon, large enough 22px OS label, status 公开下载准备中, subcopy 下载开放后将提供正式安装包。, disabled muted olive-gray 44px button 下载暂未开放. Second Windows with simple window icon, label Windows, status 版本筹备中, subcopy 正式安装包将在准备好后提供。, disabled outlined pale gray button 敬请期待. Small neutral note below rows 桌面本地功能免费使用。 Do NOT show active download action, version number, chip support, file size, release dates, QR, price or working install link.
+Lower portion y820 across content: slim simple divider and compact text strip 常见问题. Two side-by-side SMALL plain editorial text answers (no cards): 免费版需要注册吗？ / 不需要，任务保存在本机。 and 年卡和小程序何时开放？ / 目前筹备中，开放时间与价格待公布。 Real body16px readable. Footer at y955 same as references: tiny ghost+Task Sprite left and 一点陪伴，一点进展。 right. All fit a single coherent viewport with normal web spacing and comfortable baseline alignment.
+Flat high quality indie productivity web design, no photo, browser chrome, gradients, glow, 3D, giant banner, extra pages, annotations, watermarks. Render Chinese precisely.
+
