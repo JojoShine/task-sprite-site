@@ -136,7 +136,7 @@ async function loadRelease() {
       button.setAttribute('download', asset.filename);
       button.removeAttribute('aria-disabled');
       button.textContent = '下载安装包';
-      card.querySelector('.os-content > p').textContent = `${asset.platform === 'macos' ? (asset.arch === 'aarch64' ? 'Apple Silicon' : 'Intel') : 'Windows 10 / 11 · 64 位'} · ${(asset.size / 1024 / 1024).toFixed(1)} MB`;
+      card.querySelector('.os-content > p').textContent = `${asset.platform === 'macos' ? (asset.arch === 'aarch64' ? 'macOS 12+ · Apple Silicon' : 'macOS 12+ · Intel') : 'Windows 10 / 11 · 64 位'} · ${(asset.size / 1024 / 1024).toFixed(1)} MB`;
       const checksum = document.createElement('small');
       checksum.className = 'release-checksum';
       checksum.textContent = `SHA-256: ${asset.sha256}`;

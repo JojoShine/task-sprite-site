@@ -1,5 +1,5 @@
 import {readFileSync,writeFileSync} from 'node:fs';
-import {resolve,join} from 'node:path';
+import {resolve,join,dirname} from 'node:path';
 import {spawnSync} from 'node:child_process';
 const [directory,configFile] = process.argv.slice(2);
 if (!directory || !configFile) throw Error('Expected artifact directory and native configuration');
@@ -15,7 +15,9 @@ for (const asset of assets) {
   const marker = JSON.parse(readFileSync(join(directory,`${asset.platform}-${asset.arch}-verified.json`)));
   if (marker.version !== config.version || marker.startup !== 'passed') throw Error('Unverified release target');
 }
-const input = {version:config.version,notes:'支持多任务并行与跟进记录；新增在线更新和 Intel Mac 版；Windows 内含离线 WebView2 安装程序。',updaterPublicKey:config.plugins.updater.pubkey,assets,updates};
+const committed = spawnSync('git',['-C',dirname(resolve(configFile)),'log','-1','--format=%cI'],{encoding:'utf8'});
+if (committed.status !== 0 || !Number.isFinite(Date.parse(committed.stdout.trim()))) throw Error('Release source timestamp unavailable');
+const input = {version:config.version,publishedAt:committed.stdout.trim(),notes:'新增多任务并行、跟进记录、按内容调整窗口及在线更新，支持 Intel Mac。Windows 内含离线 WebView2。跟进记录和并行状态保存在本机。macOS 未公证；Windows 未商业签名。',updaterPublicKey:config.plugins.updater.pubkey,assets,updates};
 const filename = resolve(directory,'release-input.json');writeFileSync(filename,JSON.stringify(input,null,2)+'\n');
 const result = spawnSync(process.execPath,[new URL('./publish-release.mjs',import.meta.url).pathname,filename,resolve(directory),'--env'],{stdio:'inherit'});
 if (result.status !== 0) process.exit(result.status || 1);

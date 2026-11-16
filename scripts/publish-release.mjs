@@ -59,11 +59,15 @@ async function immutable(client, key, bytes, contentType, publicRead) {
 }
 export async function publishRelease(client, manifest, directory, {publicRead = true} = {}) {
   validateManifest(manifest);
+  const uploaded = new Set();
   for (const asset of [...manifest.assets,...(manifest.updates || [])]) {
     const bytes = readFileSync(join(directory,asset.filename));
     if (bytes.length !== asset.size || digest(bytes) !== asset.sha256) throw new Error('Package changed after validation');
     if (asset.signature) verifyUpdaterSignature(bytes,asset.signature,manifest.updaterPublicKey);
-    await immutable(client,`task-sprite/releases/${manifest.version}/${asset.filename}`,bytes,'application/octet-stream',publicRead);
+    if (!uploaded.has(asset.filename)) {
+      await immutable(client,`task-sprite/releases/${manifest.version}/${asset.filename}`,bytes,'application/octet-stream',publicRead);
+      uploaded.add(asset.filename);
+    }
   }
   const bytes = Buffer.from(JSON.stringify(manifest,null,2)+'\n');
   await immutable(client,`task-sprite/releases/${manifest.version}/manifest.json`,bytes,'application/json; charset=utf-8',publicRead);

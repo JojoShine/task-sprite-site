@@ -32,10 +32,11 @@ test('publishes signed updater metadata last and rejects packages changed after 
     const input={version:'0.2.2',notes:'update',updaterPublicKey:key.publicKey,assets:[{platform:'windows',arch:'x86_64',filename}],updates:[{platform:'windows',arch:'x86_64',filename}]};
     const manifest=makeManifest(input,d,'https://bucket.oss-cn-hangzhou.aliyuncs.com/');
     assert.equal(updaterManifest(manifest).platforms['windows-x86_64'].signature,key.signature);
-    const objects=new Map(),writes=[];
-    const client={async head(k){if(!objects.has(k))throw{status:404};},async get(k){return{content:objects.get(k)};},async put(k,v){writes.push(k);objects.set(k,Buffer.from(v));}};
+    const objects=new Map(),writes=[],reads=[];
+    const client={async head(k){if(!objects.has(k))throw{status:404};},async get(k){reads.push(k);return{content:objects.get(k)};},async put(k,v){writes.push(k);objects.set(k,Buffer.from(v));}};
     await publishRelease(client,manifest,d);
     assert.equal(writes.at(-1),'task-sprite/releases/updater.json');
+    assert.equal(reads.filter(key=>key.endsWith('/'+filename)).length,1);
     writeFileSync(join(d,filename),'tampered');
     assert.throws(()=>makeManifest(input,d,'https://example.com/'));
     await assert.rejects(publishRelease(client,manifest,d));
