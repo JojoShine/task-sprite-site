@@ -11,6 +11,6 @@ export function validateManifest(value) {
   }
   return value;
 }
-export function downloadFor(manifest, platform) {
-  return manifest.assets.find(asset => asset.platform === platform);
+export function downloadFor(manifest, platform, arch) {
+  return manifest.assets.find(asset => asset.platform === platform && (!arch || asset.arch === arch));
 }

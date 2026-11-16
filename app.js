@@ -128,7 +128,7 @@ async function loadRelease() {
     if (!response.ok) throw new Error('版本服务暂不可用');
     const release = validateManifest(await response.json());
     for (const card of document.querySelectorAll('[data-platform]')) {
-      const asset = downloadFor(release, card.dataset.platform);
+      const asset = downloadFor(release, card.dataset.platform, card.dataset.arch);
       const button = card.querySelector('[data-download]');
       card.querySelector('.status-tag').textContent = asset ? `v${release.version}` : '暂未提供';
       if (!asset) { button.textContent = '暂未提供此平台'; continue; }
@@ -136,7 +136,7 @@ async function loadRelease() {
       button.setAttribute('download', asset.filename);
       button.removeAttribute('aria-disabled');
       button.textContent = '下载安装包';
-      card.querySelector('.os-content > p').textContent = `${asset.arch === 'aarch64' ? 'Apple Silicon' : '64 位'} · ${(asset.size / 1024 / 1024).toFixed(1)} MB`;
+      card.querySelector('.os-content > p').textContent = `${asset.platform === 'macos' ? (asset.arch === 'aarch64' ? 'macOS 12+ · Apple Silicon' : 'macOS 12+ · Intel') : 'Windows 10 / 11 · 64 位'} · ${(asset.size / 1024 / 1024).toFixed(1)} MB`;
       const checksum = document.createElement('small');
       checksum.className = 'release-checksum';
       checksum.textContent = `SHA-256: ${asset.sha256}`;
@@ -162,4 +162,10 @@ document.querySelector('[data-admin-close]')?.addEventListener('click', () => ad
 document.querySelector('[data-admin-copy]')?.addEventListener('click', async () => {
   try { await navigator.clipboard.writeText('tbtparent'); adminFeedback.textContent = '微信号已复制，打开微信添加管理员即可。'; }
   catch { adminFeedback.textContent = '请手动复制微信号：tbtparent'; }
+});
+
+const miniappFeedback = document.querySelector('[data-miniapp-feedback]');
+document.querySelector('[data-miniapp-copy]')?.addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText('案间'); miniappFeedback.textContent = '已复制「案间」，打开微信搜索小程序即可。'; }
+  catch { miniappFeedback.textContent = '当前请在微信中搜索小程序：案间。'; }
 });

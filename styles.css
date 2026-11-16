@@ -354,3 +354,27 @@ body.page-scroll { background-image:url(assets/pixel-grid.svg); background-size:
   .page-scroll .site-footer::before { height:80px; background-size:700px auto; }
   .admin-contact { padding:22px; }
 }
+
+/* The phone companion keeps the desktop tray's ghost identity. */
+.miniapp-section { display:grid; grid-template-columns:1fr 1.2fr; gap:56px; align-items:center; padding-block:52px; border-top:1px solid var(--line); }
+.miniapp-identity { display:flex; align-items:center; gap:28px; }
+.miniapp-logo { width:132px; height:132px; flex:none; border-radius:28px; }
+.miniapp-identity h2 { margin-top:8px; font-family:"Songti SC","Noto Serif CJK SC",serif; font-size:46px; font-weight:600; letter-spacing:6px; }
+.miniapp-identity h2 span { display:block; margin-top:8px; font:15px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; letter-spacing:0; }
+.miniapp-copy>p { font-size:15px; }
+.miniapp-find { display:flex; align-items:center; flex-wrap:wrap; gap:10px 20px; margin-top:20px; }
+.miniapp-find>span { flex-basis:100%; color:var(--muted); font-size:12px; letter-spacing:1px; }
+.miniapp-find strong { font-size:25px; letter-spacing:3px; }
+.miniapp-find .button { padding:9px 16px; min-height:44px; font-size:13px; }
+.miniapp-copy .miniapp-sync-note { margin-top:14px; font-size:13px; }
+.miniapp-feedback { min-height:22px; margin-top:5px; color:var(--olive); }
+@media(max-width:900px) { .miniapp-section { gap:28px; grid-template-columns:1fr; } }
+@media(max-width:760px) {
+ .site-header nav { gap:10px; font-size:12px; }
+ .site-header nav .nav-download { min-width:0; padding:5px 14px; }
+ .miniapp-section { padding-block:32px; gap:24px; }
+ .miniapp-identity { gap:22px; }
+ .miniapp-logo { width:96px; height:96px; border-radius:22px; }
+ .miniapp-identity h2 { font-size:36px; }
+ .miniapp-identity h2 span { font-size:13px; }
+}
