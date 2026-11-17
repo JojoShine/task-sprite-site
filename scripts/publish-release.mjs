@@ -88,7 +88,7 @@ async function main() {
   const env = envFile === '--env' ? process.env : parse(readFileSync(envFile));
   const publicRead = env.OSS_PUBLIC_READ !== 'false';
   const endpoint = new URL(env.OSS_ENDPOINT);endpoint.hostname = endpoint.hostname.slice(env.OSS_BUCKET.length+1);
-  const client = new OSS({region:env.OSS_REGION,bucket:env.OSS_BUCKET,endpoint:endpoint.origin,accessKeyId:env.OSS_ACCESS_KEY_ID,accessKeySecret:env.OSS_ACCESS_KEY_SECRET,secure:true,authorizationV4:true});
+  const client = new OSS({region:env.OSS_REGION,bucket:env.OSS_BUCKET,endpoint:endpoint.origin,accessKeyId:env.OSS_ACCESS_KEY_ID,accessKeySecret:env.OSS_ACCESS_KEY_SECRET,secure:true,authorizationV4:true,timeout:300000});
   if (inputFile.startsWith('--rollback=')) {
     const version=inputFile.slice(11);
     if (!/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(version)) throw new Error('Invalid rollback version');
