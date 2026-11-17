@@ -17,7 +17,7 @@ for (const asset of assets) {
 }
 const committed = spawnSync('git',['-C',dirname(resolve(configFile)),'log','-1','--format=%cI'],{encoding:'utf8'});
 if (committed.status !== 0 || !Number.isFinite(Date.parse(committed.stdout.trim()))) throw Error('Release source timestamp unavailable');
-const input = {version:config.version,publishedAt:committed.stdout.trim(),notes:'新增多任务并行、跟进记录、按内容调整窗口及在线更新，支持 Intel Mac。Windows 内含离线 WebView2。跟进记录和并行状态保存在本机。macOS 未公证；Windows 未商业签名。',updaterPublicKey:config.plugins.updater.pubkey,assets,updates};
+const input = {version:config.version,publishedAt:committed.stdout.trim(),notes:'修复桌面端与小程序任务数量和状态同步，支持多任务并行、等待结果，以及旧完成状态冲突自动合并。',updaterPublicKey:config.plugins.updater.pubkey,assets,updates};
 const filename = resolve(directory,'release-input.json');writeFileSync(filename,JSON.stringify(input,null,2)+'\n');
 const result = spawnSync(process.execPath,[new URL('./publish-release.mjs',import.meta.url).pathname,filename,resolve(directory),'--env'],{stdio:'inherit'});
 if (result.status !== 0) process.exit(result.status || 1);
