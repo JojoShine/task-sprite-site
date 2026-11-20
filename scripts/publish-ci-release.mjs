@@ -10,14 +10,16 @@ const assets = [
   {platform:'windows',arch:'x86_64',ext:'exe'},
 ].map(({ext,...asset})=>({...asset,filename:`Task-Sprite-${config.version}-${asset.platform}-${asset.arch}.${ext}`}));
 const updates = assets.map(asset=>({...asset,filename:asset.platform === 'macos' ? asset.filename.replace(/\.dmg$/,'.app.tar.gz') : asset.filename}));
-// Reading all three smoke markers prevents partial or untested artifacts from becoming latest.
+// Both Windows installers must pass the same installation and startup check.
+assets.push({platform:'windows',arch:'x86_64',variant:'offline',filename:`Task-Sprite-${config.version}-windows-x86_64-offline.exe`});
 for (const asset of assets) {
-  const marker = JSON.parse(readFileSync(join(directory,`${asset.platform}-${asset.arch}-verified.json`)));
+  const target = [asset.platform, asset.arch, asset.variant].filter(Boolean).join('-');
+  const marker = JSON.parse(readFileSync(join(directory,`${target}-verified.json`)));
   if (marker.version !== config.version || marker.startup !== 'passed') throw Error('Unverified release target');
 }
 const committed = spawnSync('git',['-C',dirname(resolve(configFile)),'log','-1','--format=%cI'],{encoding:'utf8'});
 if (committed.status !== 0 || !Number.isFinite(Date.parse(committed.stdout.trim()))) throw Error('Release source timestamp unavailable');
-const input = {version:config.version,publishedAt:committed.stdout.trim(),notes:'新增自定义桌宠库、专属动作和每日轮换。精灵衣橱随当前页内容缩放，自定义形象启用时不再高亮内置桌宠。',updaterPublicKey:config.plugins.updater.pubkey,assets,updates};
+const input = {version:config.version,publishedAt:committed.stdout.trim(),notes:'Windows 新增轻量安装包，保留内置 WebView2 的离线安装包。',updaterPublicKey:config.plugins.updater.pubkey,assets,updates};
 const filename = resolve(directory,'release-input.json');writeFileSync(filename,JSON.stringify(input,null,2)+'\n');
 const result = spawnSync(process.execPath,[new URL('./publish-release.mjs',import.meta.url).pathname,filename,resolve(directory),'--env'],{stdio:'inherit'});
 if (result.status !== 0) process.exit(result.status || 1);

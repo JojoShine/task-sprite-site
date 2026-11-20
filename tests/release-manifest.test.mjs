@@ -8,3 +8,15 @@ test('rejects unsafe URLs, missing checksum and invalid file size',async()=>{con
 test('rejects duplicate platform architecture and invalid version or timestamp',async()=>{const {validateManifest}=await api();const m=manifest();m.assets.push({...asset});assert.throws(()=>validateManifest(m));assert.throws(()=>validateManifest({...manifest(),version:'latest'}));assert.throws(()=>validateManifest({...manifest(),publishedAt:'yesterday'}));assert.throws(()=>validateManifest({...manifest(),schemaVersion:2}))});
 test('handles empty platform list without advertising placeholder downloads',async()=>{const {validateManifest,downloadFor}=await api();const m=validateManifest({...manifest(),assets:[]});assert.equal(downloadFor(m,'macos'),undefined)});
 test('selects Intel and Apple Silicon independently',async()=>{const {validateManifest,downloadFor}=await api();const m=manifest();m.assets.push({...asset,arch:'x86_64',filename:asset.filename.replace('aarch64','x86_64'),url:asset.url.replace('aarch64','x86_64')});validateManifest(m);assert.equal(downloadFor(m,'macos','x86_64').arch,'x86_64');assert.equal(downloadFor(m,'macos','aarch64').arch,'aarch64')});
+
+test('selects the default Windows package and the offline fallback independently', async () => {
+  const {validateManifest, downloadFor} = await api();
+  const online = {...asset, platform:'windows', arch:'x86_64', filename:'windows.exe', url:'https://example.com/windows.exe'};
+  const offline = {...online, variant:'offline', filename:'windows-offline.exe', url:'https://example.com/windows-offline.exe'};
+  const release = validateManifest({...manifest(), assets:[offline, online]});
+  assert.equal(downloadFor(release, 'windows', 'x86_64'), online);
+  assert.equal(downloadFor(release, 'windows', 'x86_64', 'offline'), offline);
+  assert.equal(downloadFor(validateManifest({...manifest(), assets:[online]}), 'windows'), online);
+  assert.throws(() => validateManifest({...release, assets:[online, offline, offline]}));
+  assert.throws(() => validateManifest({...manifest(), assets:[{...asset, variant:'offline'}]}));
+});

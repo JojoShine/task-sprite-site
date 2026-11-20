@@ -5,12 +5,13 @@ export function validateManifest(value) {
     if (!asset || !['macos', 'windows'].includes(asset.platform) || !['aarch64', 'x86_64'].includes(asset.arch) || !/^[A-Za-z0-9][A-Za-z0-9._-]*\.(?:dmg|zip|exe|msi)$/.test(asset.filename) || !Number.isSafeInteger(asset.size) || asset.size <= 0 || !/^[a-f0-9]{64}$/.test(asset.sha256)) throw new Error('安装包信息无效');
     const url = new URL(asset.url);
     if (url.protocol !== 'https:' || url.username || url.password || decodeURIComponent(url.pathname.split('/').at(-1)) !== asset.filename) throw new Error('下载地址无效');
-    const key = `${asset.platform}/${asset.arch}`;
+    if (asset.variant !== undefined && (asset.platform !== 'windows' || asset.variant !== 'offline')) throw new Error('安装包类型无效');
+    const key = `${asset.platform}/${asset.arch}/${asset.variant ?? 'default'}`;
     if (targets.has(key)) throw new Error('安装包平台重复');
     targets.add(key);
   }
   return value;
 }
-export function downloadFor(manifest, platform, arch) {
-  return manifest.assets.find(asset => asset.platform === platform && (!arch || asset.arch === arch));
+export function downloadFor(manifest, platform, arch, variant) {
+  return manifest.assets.find(asset => asset.platform === platform && (!arch || asset.arch === arch) && asset.variant === variant);
 }

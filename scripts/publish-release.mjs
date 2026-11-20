@@ -21,7 +21,7 @@ export function makeManifest(input, directory, origin) {
   const manifest = {schemaVersion:1,version:input.version,publishedAt:input.publishedAt || new Date().toISOString(),notes:input.notes,assets:input.assets.map(asset => {
     if (!/^[A-Za-z0-9][A-Za-z0-9._-]*\.(dmg|zip|exe|msi)$/.test(asset.filename)) throw new Error('Invalid package filename');
     const bytes = readFileSync(join(directory, asset.filename));
-    return {platform:asset.platform,arch:asset.arch,filename:asset.filename,url:new URL(`task-sprite/releases/${input.version}/${asset.filename}`,base).href,size:bytes.length,sha256:digest(bytes)};
+    return {platform:asset.platform,arch:asset.arch,...(asset.variant === undefined ? {} : {variant:asset.variant}),filename:asset.filename,url:new URL(`task-sprite/releases/${input.version}/${asset.filename}`,base).href,size:bytes.length,sha256:digest(bytes)};
   })};
   validateManifest(manifest);
   if (!manifest.assets.length) throw new Error('No verified packages');
