@@ -17,7 +17,7 @@ for (const asset of assets) {
 }
 const committed = spawnSync('git',['-C',dirname(resolve(configFile)),'log','-1','--format=%cI'],{encoding:'utf8'});
 if (committed.status !== 0 || !Number.isFinite(Date.parse(committed.stdout.trim()))) throw Error('Release source timestamp unavailable');
-const input = {version:config.version,publishedAt:committed.stdout.trim(),notes:'修复桌宠拖动失败后底座出现残留、遮挡文字的问题。',updaterPublicKey:config.plugins.updater.pubkey,assets,updates};
+const input = {version:config.version,publishedAt:committed.stdout.trim(),notes:'小程序可用宠物照片生成像素桌宠并同步到电脑。修改截止时间会清除旧提醒，日期和时段点选即返回。新增任务窗口按内容缩小，多端任务按服务端最后收到的操作同步。',updaterPublicKey:config.plugins.updater.pubkey,assets,updates};
 const filename = resolve(directory,'release-input.json');writeFileSync(filename,JSON.stringify(input,null,2)+'\n');
 const result = spawnSync(process.execPath,[new URL('./publish-release.mjs',import.meta.url).pathname,filename,resolve(directory),'--env'],{stdio:'inherit'});
 if (result.status !== 0) process.exit(result.status || 1);
